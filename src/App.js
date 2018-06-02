@@ -15,25 +15,25 @@ class App extends Component {
 
   } 
 
-  componentWillMount() {
+  async componentWillMount() {
 
-    getWeb3
-    .then(results => {
-
+    try {
+      const results = await getWeb3
+      
       this.dataStore = new Datastore({ 
         storageProvider: new providers.storage.Ipfs(),
         encryptionProvider: new providers.encryption.Aes(),
         rpcProvider: new providers.rpc.Web3(results.web3)
       })
 
-      this.dataStore.listFiles().then(files => this.setState({ files })).catch(e => console.error(e))
+      const files = await this.dataStore.listFiles()
+      this.setState({ files })
 
       window.dataStore = this.dataStore
 
-    })
-    .catch(e => {
+    } catch(e) {
       console.log('Error ', e)
-    })
+    }
 
 
   }
