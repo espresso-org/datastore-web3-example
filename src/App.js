@@ -43,6 +43,10 @@ class App extends Component {
       <div className="App">
         <main className="container">
 
+              {this.state.files.map((file, i) => 
+                <div key={i}>{i}: {file.fileSize.toString()}</div>
+              )} 
+
         </main>
       </div>
     );
