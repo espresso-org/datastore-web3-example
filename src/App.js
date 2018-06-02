@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import getWeb3 from './utils/getWeb3'
 
+import { Datastore, providers } from 'datastore'
 
 import './App.css'
 
@@ -13,6 +15,28 @@ class App extends Component {
 
   } 
 
+  componentWillMount() {
+
+    getWeb3
+    .then(results => {
+
+      this.dataStore = new Datastore({ 
+        storageProvider: new providers.storage.Ipfs(),
+        encryptionProvider: new providers.encryption.Aes(),
+        rpcProvider: new providers.rpc.Web3(results.web3)
+      })
+
+      this.dataStore.listFiles().then(files => this.setState({ files })).catch(e => console.error(e))
+
+      window.dataStore = this.dataStore
+
+    })
+    .catch(e => {
+      console.log('Error ', e)
+    })
+
+
+  }
 
   render() {
     return (
