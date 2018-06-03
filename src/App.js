@@ -48,14 +48,20 @@ class App extends Component {
 
   }
 
+  fileClick = async fileId => {
+    const file = await this.dataStore.getFile(fileId)
+    downloadFile(file.content, file.name)
+  }
+
+
   render = () =>
     <div className="App">
       <main className="container"> 
  
         <input type="file" id="myFile" multiple size="50" onChange={this.uploadFiles} />
 
-        {this.state.files.map((file, i) =>
-          <div key={i}>{i}: {file.name}</div>
+        {this.state.files.map(file =>
+          <div onClick={() => this.fileClick(file.id)} key={file.id}>{file.id}: {file.name}</div>
         )}
 
       </main>
@@ -65,7 +71,28 @@ class App extends Component {
 
 
 
+function downloadFile(file: ArrayBuffer, filename: string) {
+  var blob = new Blob([file], {type: "application/pdf"})
 
+  // IE doesn't allow using a blob object directly as link href
+  // instead it is necessary to use msSaveOrOpenBlob
+  if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+    window.navigator.msSaveOrOpenBlob(blob)
+    return
+  } 
+
+  // For other browsers: 
+  // Create a link pointing to the ObjectURL containing the blob.
+  const data = window.URL.createObjectURL(blob)
+  var link = document.createElement('a')
+  link.href = data
+  link.download=filename
+  link.click()
+
+  // For Firefox it is necessary to delay revoking the ObjectURL
+  setTimeout(() => window.URL.revokeObjectURL(data), 100)  
+
+}
 
 
 function convertFileToArrayBuffer(file) {
