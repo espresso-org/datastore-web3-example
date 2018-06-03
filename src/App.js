@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import getWeb3 from './utils/getWeb3'
+import { AragonApp } from '@aragon/ui'
 
 import { Datastore, providers } from 'datastore'
 
@@ -55,17 +56,19 @@ class App extends Component {
 
 
   render = () =>
-    <div className="App">
-      <main className="container"> 
- 
-        <input type="file" id="myFile" multiple size="50" onChange={this.uploadFiles} />
+    <AragonApp publicUrl="/drive/">
+      <div className="App"> 
+        <main className="container"> 
+  
+          <input type="file" id="myFile" multiple size="50" onChange={this.uploadFiles} />
 
-        {this.state.files.map(file =>
-          <div onClick={() => this.fileClick(file.id)} key={file.id}>{file.id}: {file.name}</div>
-        )}
+          {this.state.files.map(file =>
+            <div onClick={() => this.fileClick(file.id)} key={file.id}>{file.id}: {file.name}</div>
+          )}
 
-      </main>
-    </div>
+        </main>
+      </div>
+    </AragonApp>
 
 }
 
