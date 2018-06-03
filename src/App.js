@@ -41,29 +41,26 @@ class App extends Component {
   uploadFiles = async e => {
     const files = e.target.files
 
-    for (let file of files) {
+    for (let file of files) {      
       const result = await convertFileToArrayBuffer(file)      
-      await this.dataStore.addFile(result)        
+      await this.dataStore.addFile(file.name, result)        
     }  
 
   }
 
-  render() {
-    return (
-      <div className="App">
-        <main className="container"> 
+  render = () =>
+    <div className="App">
+      <main className="container"> 
+ 
+        <input type="file" id="myFile" multiple size="50" onChange={this.uploadFiles} />
 
-          <input type="file" id="myFile" multiple size="50" onChange={this.uploadFiles} />
+        {this.state.files.map((file, i) =>
+          <div key={i}>{i}: {file.name}</div>
+        )}
 
-          {this.state.files.map((file, i) =>
-            <div key={i}>{i}: {file.fileSize.toString()}</div>
-          )}
+      </main>
+    </div>
 
-
-        </main>
-      </div>
-    );
-  }
 }
 
 
