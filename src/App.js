@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import getWeb3 from './utils/getWeb3'
-import { AragonApp, AppBar, Button, Table, TableHeader, TableRow, TableCell } from '@aragon/ui'
+import { AragonApp, AppBar, Button, Table, TableHeader, TableRow, TableCell, SidePanel } from '@aragon/ui'
 
 import { Datastore, providers } from 'datastore'
 
@@ -68,7 +68,6 @@ class App extends Component {
           </Button>
         }
       />
-      <main className="container"> 
 
         <input type="file" id="myFile" multiple size="50" onChange={this.uploadFiles} />
 
@@ -91,8 +90,13 @@ class App extends Component {
           </TableRow>
         )}
         </Table>
+        <SidePanel
+          title="Change permissions"
+          opened={false}
+          onClose={this.handleCreateVoteClose}
+        >
 
-      </main>
+        </SidePanel>
     </AragonApp>
 
 }
