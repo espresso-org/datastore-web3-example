@@ -3480,6 +3480,10 @@ follow-redirects@^1.0.0:
   dependencies:
     debug "^3.1.0"
 
+font-awesome-filetypes@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/font-awesome-filetypes/-/font-awesome-filetypes-1.2.0.tgz#f3a6c0f912e214adf80e86358ba55d2a42fc04fe"
+
 for-each@^0.3.2, for-each@~0.3.2:
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/for-each/-/for-each-0.3.2.tgz#2c40450b9348e97f281322593ba96704b9abd4d4"
@@ -5569,6 +5573,10 @@ module-deps@^4.0.8:
     subarg "^1.0.0"
     through2 "^2.0.0"
     xtend "^4.0.0"
+
+moment@^2.22.2:
+  version "2.22.2"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.2.tgz#3c257f9839fc0e93ff53149632239eb90783ff66"
 
 mout@^0.11.0:
   version "0.11.1"
