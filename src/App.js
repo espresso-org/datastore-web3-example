@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import getWeb3 from './utils/getWeb3'
+import styled from 'styled-components'
 import { AragonApp, AppBar, Button, Table, TableHeader, TableRow, TableCell, SidePanel } from '@aragon/ui'
+import { FileInput } from './components/file-input'
 
 import { Datastore, providers } from 'datastore'
 
@@ -61,15 +63,14 @@ class App extends Component {
         title="Drive"
         
         endContent={
-          <Button
-            mode="strong"
-          >
-            New File
-          </Button>
+
+          <FileInput onChange={this.uploadFiles} >New File</FileInput>
+
         }
       />
 
-        <input type="file" id="myFile" multiple size="50" onChange={this.uploadFiles} />
+        {/*<input type="file" id="myFile" multiple size="50" onChange={this.uploadFiles} />*/}
+        
 
         <Table
           header={
