@@ -42,6 +42,7 @@ class App extends Component {
   }
 
   uploadFiles = async e => {
+    console.log('awef')
     const files = e.target.files
 
     for (let file of files) {      
@@ -60,43 +61,43 @@ class App extends Component {
   render = () =>
     <AragonApp publicUrl="/drive/">
       <AppBar
-        title="Drive"
+        title="Drive + web3"
         
         endContent={
-
           <FileInput onChange={this.uploadFiles} >New File</FileInput>
-
         }
       />
-
-        {/*<input type="file" id="myFile" multiple size="50" onChange={this.uploadFiles} />*/}
-        
 
         <Table
           header={
             <TableRow>
-              <TableHeader title="Id" />
               <TableHeader title="Name" />
+              <TableHeader title="Owner" />
+              <TableHeader title="Permissions" />
+              <TableHeader title="Last Modified" />
             </TableRow>
           }
         >
         {this.state.files.map(file =>
           <TableRow onClick={() => this.fileClick(file.id)} key={file.id}>
             <TableCell>
-            {file.id}
-            </TableCell>
-            <TableCell>
               {file.name}
             </TableCell>
+            <TableCell>
+              {file.owner}
+            </TableCell> 
+            <TableCell>
+            </TableCell>            
+            <TableCell>
+              {file.lastModification.toString()}
+            </TableCell>            
           </TableRow>
         )}
         </Table>
         <SidePanel
           title="Change permissions"
-          opened={false}
-          onClose={this.handleCreateVoteClose}
+          opened={false}          
         >
-
         </SidePanel>
     </AragonApp>
 

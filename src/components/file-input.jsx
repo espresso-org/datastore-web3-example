@@ -40,6 +40,6 @@ const Container = styled.label`
 
 export const FileInput = ({ children, onChange }) => 
   <Container>
-    <HiddenInput {...onChange} /> 
+    <HiddenInput {...{onChange}} /> 
     {children} 
   </Container>
