@@ -5,6 +5,7 @@ import { AragonApp, AppBar, Button, Table, TableHeader, TableRow, TableCell, Sid
 import { FileInput } from './components/file-input'
 import { FileRow } from './components/file-row'
 
+import { AppLayout } from './components/app-layout'
 import { downloadFile, convertFileToArrayBuffer } from './utils/files'
 import { getClassNameForFilename } from './utils/file-icons'
 
@@ -71,45 +72,53 @@ class App extends Component {
   render = () =>
     <AragonApp publicUrl="/drive/">
       <AppBar
-        title="Drive + web3"
-        
+        title="Drive + web3"        
         endContent={
           <FileInput onChange={this.uploadFiles} >New File</FileInput>
         }
       />
+      <AppLayout.ScrollWrapper>
+        <AppLayout.Content>
+          <Breadcrumb>Documents</Breadcrumb>
+          <TwoPanels>
+            <Main>
+              <Table
+                header={
+                  <TableRow>
+                    <TableHeader title="Name" />
+                    <TableHeader title="Owner" />
+                    <TableHeader title="Permissions" />
+                    <TableHeader title="Last Modified" />
+                  </TableRow>
+                }
+              >
+                {this.state.files.map(file =>
+                  <FileRow key={file.id} file={file} onClick={() => this.fileClick(file.id)} />
+                )}
+              </Table>
+            </Main>
+            <SideBar>
+              feawf
+            </SideBar>
+          
+          </TwoPanels>
+        </AppLayout.Content>
+      </AppLayout.ScrollWrapper>
 
-      <TwoPanels>
-        <Main>
-          <Table
-            header={
-              <TableRow>
-                <TableHeader title="Name" />
-                <TableHeader title="Owner" />
-                <TableHeader title="Permissions" />
-                <TableHeader title="Last Modified" />
-              </TableRow>
-            }
-          >
-            {this.state.files.map(file =>
-              <FileRow key={file.id} file={file} onClick={() => this.fileClick(file.id)} />
-            )}
-          </Table>
-        </Main>
-        <SideBar>
-          feawf
-        </SideBar>
-      
-      </TwoPanels>
-        <SidePanel
-          title="Change permissions"
-          opened={false}          
-        >
-        </SidePanel>
+      <SidePanel
+        title="Change permissions"
+        opened={false}          
+      >
+      </SidePanel>
     </AragonApp>
 
 }
 
-
+const Breadcrumb = styled.div`
+  font-size: 21px;
+  color: #000;
+  margin: 20px 0;
+`
 
 const Main = styled.div`
   width: 100%;
