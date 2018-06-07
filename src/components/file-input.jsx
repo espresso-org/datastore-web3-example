@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 
+
 const HiddenInput = styled.input.attrs({ type: 'file' })`
   width: 0;
   height: 0;

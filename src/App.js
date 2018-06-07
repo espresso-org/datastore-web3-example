@@ -3,6 +3,7 @@ import getWeb3 from './utils/getWeb3'
 import styled from 'styled-components'
 import { AragonApp, AppBar, Button, Table, TableHeader, TableRow, TableCell, SidePanel } from '@aragon/ui'
 import { FileInput } from './components/file-input'
+import { FileRow } from './components/file-row'
 
 import { getClassNameForFilename } from './utils/file-icons'
 
@@ -87,19 +88,7 @@ class App extends Component {
           }
         >
         {this.state.files.map(file =>
-          <TableRow onClick={() => this.fileClick(file.id)} key={file.id}>
-            <TableCell>
-             <i className={`fa ${getIcon(file.name)}`} /> {file.name}
-            </TableCell>
-            <TableCell>
-              {file.owner}
-            </TableCell> 
-            <TableCell>
-            </TableCell>            
-            <TableCell>
-              {file.lastModification.toString()}
-            </TableCell>            
-          </TableRow>
+          <FileRow key={file.id} file={file} onClick={() => this.fileClick(file)} />
         )}
         </Table>
         <SidePanel
