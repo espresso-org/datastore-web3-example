@@ -88,7 +88,7 @@ class App extends Component {
           }
         >
         {this.state.files.map(file =>
-          <FileRow key={file.id} file={file} onClick={() => this.fileClick(file)} />
+          <FileRow key={file.id} file={file} onClick={() => this.fileClick(file.id)} />
         )}
         </Table>
         <SidePanel
