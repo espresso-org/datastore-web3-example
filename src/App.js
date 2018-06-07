@@ -4,6 +4,14 @@ import styled from 'styled-components'
 import { AragonApp, AppBar, Button, Table, TableHeader, TableRow, TableCell, SidePanel } from '@aragon/ui'
 import { FileInput } from './components/file-input'
 
+import { getClassNameForFilename } from './utils/file-icons'
+
+function getIcon(filename) {
+  return getClassNameForFilename(filename).replace('-o', '')
+}
+
+
+
 import { Datastore, providers } from 'datastore'
 
 import './App.css'
@@ -81,7 +89,7 @@ class App extends Component {
         {this.state.files.map(file =>
           <TableRow onClick={() => this.fileClick(file.id)} key={file.id}>
             <TableCell>
-              {file.name}
+             <i className={`fa ${getIcon(file.name)}`} /> {file.name}
             </TableCell>
             <TableCell>
               {file.owner}

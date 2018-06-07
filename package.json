@@ -50,9 +50,10 @@
   },
   "dependencies": {
     "@aragon/ui": "^0.14.0",
+    "@fortawesome/fontawesome": "^1.1.8",
+    "@fortawesome/fontawesome-free-solid": "^5.0.13",
     "async": "^2.6.1",
     "dotenv": "^2.0.0",
-    "font-awesome-filetypes": "^1.2.0",
     "ipfs-api": "^21.0.0",
     "moment": "^2.22.2",
     "react": "^16.4.0",
