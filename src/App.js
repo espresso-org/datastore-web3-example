@@ -78,20 +78,28 @@ class App extends Component {
         }
       />
 
-        <Table
-          header={
-            <TableRow>
-              <TableHeader title="Name" />
-              <TableHeader title="Owner" />
-              <TableHeader title="Permissions" />
-              <TableHeader title="Last Modified" />
-            </TableRow>
-          }
-        >
-        {this.state.files.map(file =>
-          <FileRow key={file.id} file={file} onClick={() => this.fileClick(file.id)} />
-        )}
-        </Table>
+      <TwoPanels>
+        <Main>
+          <Table
+            header={
+              <TableRow>
+                <TableHeader title="Name" />
+                <TableHeader title="Owner" />
+                <TableHeader title="Permissions" />
+                <TableHeader title="Last Modified" />
+              </TableRow>
+            }
+          >
+            {this.state.files.map(file =>
+              <FileRow key={file.id} file={file} onClick={() => this.fileClick(file.id)} />
+            )}
+          </Table>
+        </Main>
+        <SideBar>
+          feawf
+        </SideBar>
+      
+      </TwoPanels>
         <SidePanel
           title="Change permissions"
           opened={false}          
@@ -103,7 +111,22 @@ class App extends Component {
 
 
 
+const Main = styled.div`
+  width: 100%;
+`
+const TwoPanels = styled.div`
+  display: flex;
+  width: 100%;
+  min-width: 800px;
+`
 
+const SideBar = styled.aside`
+  flex-shrink: 0;
+  flex-grow: 0;
+  width: 300px;
+  margin-left: 30px;
+  min-height: 100%;
+`
 
 
 
