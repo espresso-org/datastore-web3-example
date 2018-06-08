@@ -14,13 +14,10 @@ const Main = styled.aside`
 
 export const SideBar = ({ file }) =>
   <Main>
-    {file &&
-      <div>
-        <Tabs>
-          Details
-        </Tabs>
+      
+      <Tabs>Details</Tabs>
         
-
+      {file &&
         <Details>
           <Text size="large">{file.name}</Text>
           <Info>
@@ -43,8 +40,8 @@ export const SideBar = ({ file }) =>
             <ActionButton mode="outline" emphasis="negative">Delete</ActionButton>
           </Actions>
         </Details>
-      </div>
-    }
+      }
+      
 
 
   </Main>

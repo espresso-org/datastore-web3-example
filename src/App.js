@@ -9,11 +9,7 @@ import { FileRow } from './components/file-row'
 import { SideBar } from './components/side-bar'
 
 import { downloadFile, convertFileToArrayBuffer } from './utils/files'
-import { getClassNameForFilename } from './utils/file-icons'
-
-function getIcon(filename) {
-  return getClassNameForFilename(filename).replace('-o', '')
-}
+import { mainStore } from './stores/main-store'
 
 
 
@@ -71,7 +67,6 @@ class App extends Component {
   }  
 
   selectFile = async fileId => {
-    console.log('selectFile: ', fileId)
     const selectedFile = this.state.files.filter(file => file.id === fileId)[0]
     console.log('selectedFile: ', selectedFile)
     if (selectedFile)
