@@ -60,6 +60,7 @@
     "async": "^2.6.1",
     "dotenv": "^2.0.0",
     "ipfs-api": "^21.0.0",
+    "literal-switch": "^1.0.2",
     "mobx": "^5.0.0",
     "mobx-react": "^5.2.1",
     "moment": "^2.22.2",

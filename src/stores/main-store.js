@@ -30,13 +30,13 @@ class MainStore {
 
     for (let file of files) {
       const result = await convertFileToArrayBuffer(file)
-      await this.dataStore.addFile(file.name, result)
+      await this._datastore.addFile(file.name, result)
     }
 
   }
 
   downloadFile = async fileId => {
-    const file = await this.dataStore.getFile(fileId)
+    const file = await this._datastore.getFile(fileId)
     downloadFile(file.content, file.name)
   }
 
