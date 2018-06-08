@@ -24,6 +24,7 @@ class App extends Component {
     super(props)
 
     this.state = {
+      selectedFile: null,
       files: []
     }
 
@@ -53,7 +54,6 @@ class App extends Component {
   }
 
   uploadFiles = async e => {
-    console.log('awef')
     const files = e.target.files
 
     for (let file of files) {      
@@ -63,9 +63,22 @@ class App extends Component {
 
   }
 
-  fileClick = async fileId => {
+  downloadFile = async fileId => {
     const file = await this.dataStore.getFile(fileId)
     downloadFile(file.content, file.name)
+  }  
+
+  selectFile = async fileId => {
+    console.log('selectFile: ', fileId)
+    const selectedFile = this.state.files.filter(file => file.id === fileId)[0]
+    console.log('selectedFile: ', selectedFile)
+    if (selectedFile)
+      this.setState({ selectedFile })
+  }
+
+  isFileSelected = file => {
+    console.log('isFileSelected: ', file.id, this.state.selectedFile && this.state.selectedFile.id === file.id)
+    return this.state.selectedFile && this.state.selectedFile.id === file.id
   }
 
 
@@ -81,6 +94,7 @@ class App extends Component {
         <AppLayout.Content>
           <Breadcrumb>Documents</Breadcrumb>
           <TwoPanels>
+
             <Main>
               <Table
                 header={
@@ -93,12 +107,20 @@ class App extends Component {
                 }
               >
                 {this.state.files.map(file =>
-                  <FileRow key={file.id} file={file} onClick={() => this.fileClick(file.id)} />
+                  <FileRow 
+                    key={file.id} 
+                    file={file} 
+                    selected={this.isFileSelected(file)}
+                    onClick={() => this.selectFile(file.id)} 
+                  />
                 )}
               </Table>
             </Main>
+            
             <SideBar>
-              feawf
+              Details
+
+
             </SideBar>
           
           </TwoPanels>
@@ -117,7 +139,6 @@ class App extends Component {
 const Breadcrumb = styled.div`
   font-size: 21px;
   color: #000;
-  margin: 20px 0;
 `
 
 const Main = styled.div`

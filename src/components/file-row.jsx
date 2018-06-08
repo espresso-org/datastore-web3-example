@@ -7,6 +7,9 @@ import moment from 'moment'
 
 const Container = styled(TableRow)`
   cursor: pointer;
+  > * {
+    background: ${ props => props.selected ? '#e3f7f5' : '#FFF' };
+  }
 `
 
 const EthAddress = styled.div`
@@ -17,8 +20,8 @@ const EthAddress = styled.div`
 `
 
 
-export const FileRow = ({ file, onClick }) => 
-  <Container {...{ onClick }}>
+export const FileRow = ({ file, onClick, selected }) => 
+  <Container {...{ onClick, selected }}>
     <TableCell>
       <div><i className={`fa ${getClassNameForFilename(file.name)}`} /> {file.name}</div>
     </TableCell>
