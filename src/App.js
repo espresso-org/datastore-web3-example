@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import getWeb3 from './utils/getWeb3'
 import styled from 'styled-components'
 import { AragonApp, AppBar, Button, Table, TableHeader, TableRow, TableCell, SidePanel } from '@aragon/ui'
-import { FileInput } from './components/file-input'
-import { FileRow } from './components/file-row'
 
 import { AppLayout } from './components/app-layout'
+import { FileInput } from './components/file-input'
+import { FileRow } from './components/file-row'
+import { SideBar } from './components/side-bar'
+
 import { downloadFile, convertFileToArrayBuffer } from './utils/files'
 import { getClassNameForFilename } from './utils/file-icons'
 
@@ -117,11 +119,7 @@ class App extends Component {
               </Table>
             </Main>
             
-            <SideBar>
-              Details
-
-
-            </SideBar>
+            <SideBar file={this.state.selectedFile} /> 
           
           </TwoPanels>
         </AppLayout.Content>
@@ -150,13 +148,7 @@ const TwoPanels = styled.div`
   min-width: 800px;
 `
 
-const SideBar = styled.aside`
-  flex-shrink: 0;
-  flex-grow: 0;
-  width: 300px;
-  margin-left: 30px;
-  min-height: 100%;
-`
+
 
 
 
