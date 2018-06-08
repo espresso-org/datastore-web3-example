@@ -41,8 +41,11 @@ class MainStore {
   }
 
   selectFile = async fileId => {
+    if (this.selectedFile && this.selectedFile.id === fileId) 
+      return this.selectedFile = null    
+
     const selectedFile = this.files.filter(file => file && file.id === fileId)[0]
-    console.log('selectedFile: ', selectedFile)
+    
     if (selectedFile)
       this.selectedFile = selectedFile
   }
