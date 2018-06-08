@@ -94,7 +94,7 @@ class App extends Component {
       />
       <AppLayout.ScrollWrapper>
         <AppLayout.Content>
-          <Breadcrumb>Documents</Breadcrumb>
+          <Breadcrumb>/</Breadcrumb>
           <TwoPanels>
 
             <Main>

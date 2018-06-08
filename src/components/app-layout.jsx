@@ -16,7 +16,8 @@ AppLayout.ScrollWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: stretch;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   flex-grow: 1;
 `
 
