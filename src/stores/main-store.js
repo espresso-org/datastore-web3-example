@@ -37,10 +37,10 @@ class MainStore {
   }
 
   selectFile = async fileId => {
-    const selectedFile = mainStore.files.filter(file => file && file.id === fileId)[0]
+    const selectedFile = this.files.filter(file => file && file.id === fileId)[0]
     console.log('selectedFile: ', selectedFile)
     if (selectedFile)
-      mainStore.selectedFile = selectedFile
+      this.selectedFile = selectedFile
   }
 
   _datastore
