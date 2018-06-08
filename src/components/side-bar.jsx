@@ -4,6 +4,8 @@ import moment from 'moment'
 
 import { Text, Button, theme } from '@aragon/ui'
 
+import { mainStore } from '../stores/main-store'
+
 const Main = styled.aside`
   flex-shrink: 0;
   flex-grow: 0;

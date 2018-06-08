@@ -4,11 +4,18 @@ import { downloadFile, convertFileToArrayBuffer } from '../utils/files'
 import getWeb3 from '../utils/getWeb3'
 import { Datastore, providers } from 'datastore'
 
+export const EditMode = {
+  None: "None",
+  Name: "Name",
+  Content: "Content",
+  WritePermissions: "WritePermissions"
+}
 
 class MainStore {
 
   @observable files = []
   @observable selectedFile
+  @observable editMode = EditMode.None
 
   isFileSelected(file) {
     return this.selectedFile && this.selectedFile.id === file.id

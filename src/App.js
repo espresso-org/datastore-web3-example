@@ -9,7 +9,7 @@ import { FileInput } from './components/file-input'
 import { FileRow } from './components/file-row'
 import { SideBar } from './components/side-bar'
 
-import { mainStore } from './stores/main-store'
+import { mainStore, EditMode } from './stores/main-store'
 
 import './App.css'
 
@@ -57,7 +57,8 @@ const App = observer(() =>
 
     <SidePanel
       title="Change permissions"
-      opened={false}
+      opened={mainStore.editMode !== EditMode.None}
+      onClose={() => mainStore.editMode = EditMode.None}
     >
     </SidePanel>
   </AragonApp>
