@@ -26,8 +26,10 @@ export const SideBar = ({ file }) =>
           <Info>
             <Label>Type</Label>Javascript file<br />
             <Label>Location</Label>/<br />
+
             <Label>Owner</Label>
             <EthAddress title={file.owner}>{file.owner}</EthAddress><br />
+
             <Label>Permissions</Label><br />
             <Label>Modified</Label>{moment.unix(file.lastModification.toNumber()).format('MMM D YYYY')}<br />
             <Label>File size</Label>{file.fileSize.toNumber()}<br />
@@ -35,7 +37,10 @@ export const SideBar = ({ file }) =>
           <Separator />
 
           <Actions>
-            <Button>Rename</Button>
+            <Button mode="secondary">Rename</Button><br />
+            <Button mode="secondary">Modify</Button><br />
+            <Button mode="secondary">Change permissions</Button><br />
+            <Button mode="outline">Delete</Button><br />
           </Actions>
         </Details>
       </div>
@@ -70,6 +75,8 @@ const Actions = styled.div`
   margin-top: 20px;
   margin-bottom: 20px;
 `
+
+
 
 const EthAddress = styled.span`
   max-width: 120px;
