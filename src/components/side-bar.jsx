@@ -37,10 +37,10 @@ export const SideBar = ({ file }) =>
           <Separator />
 
           <Actions>
-            <Button mode="secondary">Rename</Button><br />
-            <Button mode="secondary">Modify</Button><br />
-            <Button mode="secondary">Change permissions</Button><br />
-            <Button mode="outline">Delete</Button><br />
+            <ActionButton mode="secondary">Rename</ActionButton>
+            <ActionButton mode="secondary">Modify</ActionButton>
+            <ActionButton mode="secondary">Change permissions</ActionButton>
+            <ActionButton mode="outline" emphasis="negative">Delete</ActionButton>
           </Actions>
         </Details>
       </div>
@@ -76,10 +76,14 @@ const Actions = styled.div`
   margin-bottom: 20px;
 `
 
-
+const ActionButton = styled(Button)`
+  display: block;
+  width: 180px;
+  margin: 8px 0;
+`
 
 const EthAddress = styled.span`
-  max-width: 120px;
+  max-width: 140px;
   overflow: hidden;
   display: inline-block;
   vertical-align: middle;
