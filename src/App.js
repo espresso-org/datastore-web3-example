@@ -5,6 +5,7 @@ import { observer } from 'mobx-react'
 import { AragonApp, AppBar, Table, TableHeader, TableRow, SidePanel } from '@aragon/ui'
 
 import { AppLayout } from './components/app-layout'
+import { EditPanel } from './components/edit-panel'
 import { FileInput } from './components/file-input'
 import { FileRow } from './components/file-row'
 import { SideBar } from './components/side-bar'
@@ -55,12 +56,7 @@ const App = observer(() =>
       </AppLayout.Content>
     </AppLayout.ScrollWrapper>
 
-    <SidePanel
-      title="Change permissions"
-      opened={mainStore.editMode !== EditMode.None}
-      onClose={() => mainStore.editMode = EditMode.None}
-    >
-    </SidePanel>
+    <EditPanel />
   </AragonApp>
 )
 
