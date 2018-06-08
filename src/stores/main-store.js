@@ -1,4 +1,4 @@
-import { observable, computed } from 'mobx'
+import { observable, computed, action } from 'mobx'
 
 import { downloadFile, convertFileToArrayBuffer } from '../utils/files'
 import getWeb3 from '../utils/getWeb3'
@@ -8,7 +8,7 @@ export const EditMode = {
   None: "None",
   Name: "Name",
   Content: "Content",
-  WritePermissions: "WritePermissions"
+  Permissions: "Permissions"
 }
 
 class MainStore {
@@ -19,6 +19,10 @@ class MainStore {
 
   isFileSelected(file) {
     return this.selectedFile && this.selectedFile.id === file.id
+  }
+
+  @action setEditMode(mode) {
+    this.editMode = mode
   }
 
   uploadFiles = async e => {

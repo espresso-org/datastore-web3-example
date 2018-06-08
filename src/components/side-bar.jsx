@@ -4,7 +4,7 @@ import moment from 'moment'
 
 import { Text, Button, theme } from '@aragon/ui'
 
-import { mainStore } from '../stores/main-store'
+import { mainStore, EditMode } from '../stores/main-store'
 
 const Main = styled.aside`
   flex-shrink: 0;
@@ -36,10 +36,10 @@ export const SideBar = ({ file }) =>
           <Separator />
 
           <Actions>
-            <ActionButton mode="secondary">Rename</ActionButton>
-            <ActionButton mode="secondary">Modify</ActionButton>
-            <ActionButton mode="secondary">Change permissions</ActionButton>
-            <ActionButton mode="outline" emphasis="negative">Delete</ActionButton>
+            <ActionButton onClick={() => mainStore.setEditMode(EditMode.Name)}>Rename</ActionButton>
+            <ActionButton onClick={() => mainStore.setEditMode(EditMode.Content)}>Modify</ActionButton>
+            <ActionButton onClick={() => mainStore.setEditMode(EditMode.Permissions)}>Change permissions</ActionButton>
+            <ActionButton mode="outline" onClick={() => /* TODO */0} emphasis="negative">Delete</ActionButton>
           </Actions>
         </Details>
       }
@@ -75,7 +75,7 @@ const Actions = styled.div`
   margin-bottom: 20px;
 `
 
-const ActionButton = styled(Button)`
+const ActionButton = styled(Button).attrs({ mode: 'secondary'})`
   display: block;
   width: 180px;
   margin: 8px 0;
