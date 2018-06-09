@@ -39,8 +39,12 @@ class MainStore {
     }
   }
 
+  async addWritePermission(fileId, address) {
+    await this._datastore.setWritePermission(fileId, address, true)
+  }
+
   async setFileContent(fileId, fileContent) {
-    await this._datastore.setFileContent(fileId, fileContent)  
+    await this._datastore.setFileContent(fileId, fileContent) 
     this.setEditMode(EditMode.None)
   }
 

@@ -6,6 +6,7 @@ import Switch from 'literal-switch'
 import { SidePanel } from '@aragon/ui'
 import { EditName } from './edit-name'
 import { EditContent } from './edit-content'
+import { EditPermissions } from './edit-permissions'
 
 import { mainStore, EditMode } from '../stores/main-store'
 
@@ -24,7 +25,7 @@ export const EditPanel = observer(() =>
         [EditMode.None]: null,
         [EditMode.Name]: () => <EditName file={mainStore.selectedFile}/>,
         [EditMode.Content]: () => <EditContent file={mainStore.selectedFile}/>,
-        [EditMode.Permissions]: () => <div>edit permissions</div>
+        [EditMode.Permissions]: () => <EditPermissions file={mainStore.selectedFile}/>
       }, mainStore.editMode)}
     </Content>
 
