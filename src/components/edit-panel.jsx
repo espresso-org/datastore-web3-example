@@ -21,7 +21,7 @@ export const EditPanel = observer(() =>
       {mainStore.selectedFile && 
       Switch({
         [EditMode.None]: null,
-        [EditMode.Name]: () => <EditName />,
+        [EditMode.Name]: () => <EditName file={mainStore.selectedFile}/>,
         [EditMode.Content]: () => <div>edit content</div>,
         [EditMode.Permissions]: () => <div>edit permissions</div>
       }, mainStore.editMode)}

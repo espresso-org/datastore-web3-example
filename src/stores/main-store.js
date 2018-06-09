@@ -25,6 +25,11 @@ class MainStore {
     this.editMode = mode
   }
 
+  @action async setFilename(fileId, newName) {
+    await this._datastore.setFilename(fileId, newName)
+    this.setEditMode(EditMode.None)
+  }
+
   uploadFiles = async e => {
     const files = e.target.files
 
@@ -32,7 +37,6 @@ class MainStore {
       const result = await convertFileToArrayBuffer(file)
       await this._datastore.addFile(file.name, result)
     }
-
   }
 
   downloadFile = async fileId => {

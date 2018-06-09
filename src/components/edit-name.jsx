@@ -11,18 +11,30 @@ const Main = styled.div`
 `
 
 
+@observer
+export class EditName extends Component {
 
-export const EditName = observer(() =>
-  <Main>
-      <Field label="New file name:">
-        <TextInput value={mainStore.selectedFile.name} />
-      </Field>
-      <Actions>
-        <ActionButton mode="outline" onClick={() => /* TODO */0} emphasis="positive">OK</ActionButton>
-        <ActionButton mode="outline" onClick={() => mainStore.setEditMode(EditMode.None)} emphasis="negative">Cancel</ActionButton>
-      </Actions>
-  </Main>
-)
+  state = { newFilename: '' }
+
+  constructor(props) {
+    super(props)
+    this.state = { newFilename: props.file && props.file.name }
+  }
+
+  render() {
+    return (
+      <Main>
+          <Field label="New file name:">
+            <TextInput value={this.state.newFilename} onChange={e => this.setState({ newFilename: e.target.value })} />
+          </Field>
+          <Actions>
+            <ActionButton mode="outline" onClick={() => mainStore.setFilename(this.props.file.id, this.state.newFilename)} emphasis="positive">OK</ActionButton>
+            <ActionButton mode="outline" onClick={() => mainStore.setEditMode(EditMode.None)} emphasis="negative">Cancel</ActionButton>
+          </Actions>
+      </Main>
+    )
+  }
+}
 
 const Actions = styled.div`
   margin-top: 40px;
