@@ -49,7 +49,7 @@ export class EditPermissions extends Component {
           </AddressList>
 
           <Actions>            
-            <ActionButton mode="outline" onClick={() => mainStore.setFilename(this.props.file.id, this.state.newFilename)} emphasis="positive">OK</ActionButton>
+            <ActionButton mode="outline" onClick={() => mainStore.setEditMode(EditMode.None)} emphasis="positive">OK</ActionButton>
             <ActionButton mode="outline" onClick={() => mainStore.setEditMode(EditMode.None)} emphasis="negative">Cancel</ActionButton>
           </Actions>
       </Main>

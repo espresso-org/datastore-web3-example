@@ -37,6 +37,7 @@ class MainStore {
       const result = await convertFileToArrayBuffer(file)
       await this._datastore.addFile(file.name, result)
     }
+
   }
 
   async addWritePermission(fileId, address) {
@@ -57,11 +58,12 @@ class MainStore {
     if (this.selectedFile && this.selectedFile.id === fileId) 
       return this.selectedFile = null    
 
-    const selectedFile = this.files.filter(file => file && file.id === fileId)[0]
+    const selectedFile = this.files.find(file => file && file.id === fileId)
     
     if (selectedFile)
       this.selectedFile = selectedFile
   }
+
 
   _datastore
 
@@ -84,7 +86,11 @@ class MainStore {
 
   async _refreshFiles() {
     this.files = await this._datastore.listFiles()
-    console.log('files: ', this.files)
+    
+    // Update selected file
+    if (this.selectedFile) 
+      this.selectedFile = this.files.find(file => file && file.id === this.selectedFile.id)
+    
   }
 
 }
