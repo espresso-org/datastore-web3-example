@@ -20,7 +20,7 @@ const App = observer(() =>
     <AppBar
       title="Drive + web3"
       endContent={
-        <FileInput onChange={mainStore.uploadFiles} >New File</FileInput>
+        <FileInput onChange={e => mainStore.uploadFiles(e.target.files)} >New File</FileInput>
       }
     />
     <AppLayout.ScrollWrapper>

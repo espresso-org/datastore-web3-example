@@ -30,13 +30,18 @@ class MainStore {
     this.setEditMode(EditMode.None)
   }
 
-  uploadFiles = async e => {
-    const files = e.target.files
+  async uploadFiles(files) {
+    // TODO: Add warning when there are multiple files
 
     for (let file of files) {
       const result = await convertFileToArrayBuffer(file)
       await this._datastore.addFile(file.name, result)
     }
+  }
+
+  async setFileContent(fileId, fileContent) {
+    await this._datastore.setFileContent(fileId, fileContent)  
+    this.setEditMode(EditMode.None)
   }
 
   downloadFile = async fileId => {
