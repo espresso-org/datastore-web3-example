@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { observer } from 'mobx-react'
 
-import { Field, Button, TextInput } from '@aragon/ui'
+import { Field, Button, TextInput, Text } from '@aragon/ui'
 
 import { mainStore, EditMode } from '../stores/main-store'
 
@@ -23,6 +23,7 @@ export class EditPermissions extends Component {
   render() {
     return (
       <Main>
+          <Title>Write permissions</Title>
           <Field label="Entity address:">
             <TextInput value={this.state.newAddress} onChange={e => this.setState({ newAddress: e.target.value })} />
             <AddButton onClick={() => mainStore.addWritePermission(this.props.file.id, this.state.newAddress)}>Add</AddButton>
@@ -33,6 +34,20 @@ export class EditPermissions extends Component {
               <Address key={address}>{address}</Address>
             )}
           </AddressList>
+         
+
+          <Title style={{marginTop: '80px'}}>Read permissions</Title>
+          <Field label="Entity address:">
+            <TextInput value={this.state.newAddress} onChange={e => this.setState({ newAddress: e.target.value })} />
+            <AddButton onClick={() => mainStore.addReadPermission(this.props.file.id, this.state.newAddress)}>Add</AddButton>
+            <RemoveButton onClick={() => mainStore.removeReadPermission(this.props.file.id, this.state.newAddress)}>Remove</RemoveButton>
+          </Field>
+          <AddressList>
+            {
+              // TODO
+            }
+          </AddressList>
+
           <Actions>            
             <ActionButton mode="outline" onClick={() => mainStore.setFilename(this.props.file.id, this.state.newFilename)} emphasis="positive">OK</ActionButton>
             <ActionButton mode="outline" onClick={() => mainStore.setEditMode(EditMode.None)} emphasis="negative">Cancel</ActionButton>
@@ -41,6 +56,11 @@ export class EditPermissions extends Component {
     )
   }
 }
+
+const Title = styled(Text).attrs({ size: 'xlarge'})`
+  display: block;
+  margin: 8px 0;
+`
 
 const AddButton = styled(Button).attrs({ 
     compact: true, 
