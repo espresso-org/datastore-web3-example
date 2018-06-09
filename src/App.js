@@ -35,6 +35,7 @@ const App = observer(() =>
                   <TableHeader title="Owner" />
                   <TableHeader title="Permissions" />
                   <TableHeader title="Last Modified" />
+                  <TableHeader title="" />
                 </TableRow>
               }
             >
