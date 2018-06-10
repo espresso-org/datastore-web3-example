@@ -3445,9 +3445,9 @@ fileset@^2.0.2:
     glob "^7.0.3"
     minimatch "^3.0.3"
 
-filesize@3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/filesize/-/filesize-3.3.0.tgz#53149ea3460e3b2e024962a51648aa572cf98122"
+filesize@^3.6.1:
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/filesize/-/filesize-3.6.1.tgz#090bb3ee01b6f801a8a8be99d31710b3422bb317"
 
 fill-range@^2.1.0:
   version "2.2.4"

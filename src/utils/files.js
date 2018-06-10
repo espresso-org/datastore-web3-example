@@ -1,3 +1,9 @@
+import fontawesome from '@fortawesome/fontawesome'
+import solid from '@fortawesome/fontawesome-free-solid'
+
+import * as fileDesc from './file-descriptions'
+
+
 export function downloadFile(file: ArrayBuffer, filename: string) {
     var blob = new Blob([file], { type: "application/pdf" })
 
@@ -33,4 +39,41 @@ export function convertFileToArrayBuffer(file) {
 
         reader.readAsArrayBuffer(file)
     })
+}
+
+
+
+/**
+ * @param {string} extension
+ * @returns {string}
+ */
+export function getExtensionForFilename(filename) {
+    return filename.slice((filename.lastIndexOf('.') - 1 >>> 0) + 2)
+}
+
+/**
+ * @param {string} extension
+ * @returns {string}
+ */
+export function getClassNameForFilename(filename) {
+    const fileInfo = fileDesc.extensions[getExtensionForFilename(filename).toLowerCase()]
+
+    if (fileInfo)
+        return fileInfo.className 
+    else
+        return fileDesc.classNames.file
+}
+
+export function getDescriptionForFilename(filename) {
+    const fileInfo = fileDesc.extensions[getExtensionForFilename(filename).toLowerCase()]
+
+    if (fileInfo)
+        return fileInfo.description 
+    else
+        return ''
+}
+
+export function loadFileIcons() {
+    for (let icon of fileDesc.icons)
+        fontawesome.library.add(solid[icon])
 }

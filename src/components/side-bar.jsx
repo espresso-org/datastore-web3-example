@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import moment from 'moment'
+import filesize from 'filesize'
+import { getDescriptionForFilename, getClassNameForFilename } from '../utils/files'
 
 import { Text, Button, theme } from '@aragon/ui'
 
@@ -23,15 +25,19 @@ export const SideBar = ({ file }) =>
         <Details>
           <Text size="large">{file.name}</Text>
           <Info>
-            <Label>Type</Label>Javascript file<br />
+            <Label>Type</Label><i className={`fa ${getClassNameForFilename(file.name)}`} /> {getDescriptionForFilename(file.name)}<br />
             <Label>Location</Label>/<br />
 
             <Label>Owner</Label>
             <EthAddress title={file.owner}>{file.owner}</EthAddress><br />
 
-            <Label>Permissions</Label><br />
+            <Label>Permissions</Label>
+            {file.permissions.read && 'Read'}
+            {file.permissions.read && file.permissions.write && ', '}
+            {file.permissions.write && 'Write'}
+            <br />
             <Label>Modified</Label>{moment.unix(file.lastModification.toNumber()).format('MMM D YYYY')}<br />
-            <Label>File size</Label>{file.fileSize.toNumber()}<br />
+            <Label>File size</Label>{filesize(file.fileSize.toNumber())}<br />
           </Info>
           <Separator />
 

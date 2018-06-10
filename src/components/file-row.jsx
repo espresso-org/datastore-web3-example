@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { TableRow, TableCell } from '@aragon/ui'
 import fontawesome from '@fortawesome/fontawesome'
 import solid from '@fortawesome/fontawesome-free-solid'
-import { getClassNameForFilename } from '../utils/file-icons'
+import { getClassNameForFilename } from '../utils/files'
 import moment from 'moment'
 
 import { mainStore } from '../stores/main-store'
