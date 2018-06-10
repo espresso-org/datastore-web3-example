@@ -44,6 +44,9 @@ export const FileRow = ({ file, onClick, selected }) =>
       <EthAddress title={file.owner}>{file.owner}</EthAddress> 
     </OwnerCell>
     <TableCell>
+      {file.permissions.read && 'Read'}
+      {file.permissions.read && file.permissions.write && ', '}
+      {file.permissions.write && 'Write'}
     </TableCell>            
     <TableCell>
       {moment.unix(file.lastModification.toNumber()).format('YYYY-MM-DD')}

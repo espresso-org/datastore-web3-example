@@ -36,10 +36,18 @@ export const SideBar = ({ file }) =>
           <Separator />
 
           <Actions>
-            <ActionButton onClick={() => mainStore.setEditMode(EditMode.Name)}>Rename</ActionButton>
-            <ActionButton onClick={() => mainStore.setEditMode(EditMode.Content)}>Modify</ActionButton>
-            <ActionButton onClick={() => mainStore.setEditMode(EditMode.Permissions)}>Change permissions</ActionButton>
-            <ActionButton mode="outline" onClick={() => /* TODO */0} emphasis="negative">Delete</ActionButton>
+            {file.permissions.write &&
+              <div>
+                <ActionButton onClick={() => mainStore.setEditMode(EditMode.Name)}>Rename</ActionButton>
+                <ActionButton onClick={() => mainStore.setEditMode(EditMode.Content)}>Modify</ActionButton>
+              </div>
+            }
+            {file.isOwner &&
+              <div>
+                <ActionButton onClick={() => mainStore.setEditMode(EditMode.Permissions)}>Change permissions</ActionButton>
+                <ActionButton mode="outline" onClick={() => /* TODO */0} emphasis="negative">Delete</ActionButton>
+              </div>
+            }
           </Actions>
         </Details>
       }
@@ -53,6 +61,7 @@ export const SideBar = ({ file }) =>
 const Tabs = styled.div`
   border-bottom: 1px solid ${theme.contentBorder};
   padding-bottom: 8px;
+
 `
 
 const Details = styled.div`
