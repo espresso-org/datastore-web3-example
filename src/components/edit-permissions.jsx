@@ -14,7 +14,10 @@ const Main = styled.div`
 @observer
 export class EditPermissions extends Component {
 
-  state = { newAddress: '' }
+  state = { 
+    newAddressWrite: '',
+    newAddressRead: ''
+  }
 
   constructor(props) {
     super(props)
@@ -25,9 +28,9 @@ export class EditPermissions extends Component {
       <Main>
           <Title>Write permissions</Title>
           <Field label="Entity address:">
-            <TextInput value={this.state.newAddress} onChange={e => this.setState({ newAddress: e.target.value })} />
-            <AddButton onClick={() => mainStore.addWritePermission(this.props.file.id, this.state.newAddress)}>Add</AddButton>
-            <RemoveButton onClick={() => mainStore.removeWritePermission(this.props.file.id, this.state.newAddress)}>Remove</RemoveButton>
+            <TextInput value={this.state.newAddressWrite} onChange={e => this.setState({ newAddressWrite: e.target.value })} />
+            <AddButton onClick={() => mainStore.addWritePermission(this.props.file.id, this.state.newAddressWrite)}>Add</AddButton>
+            <RemoveButton onClick={() => mainStore.removeWritePermission(this.props.file.id, this.state.newAddressWrite)}>Remove</RemoveButton>
           </Field>
           <AddressList>
             {this.props.file.permissionAddresses.map(address => 
@@ -38,9 +41,9 @@ export class EditPermissions extends Component {
 
           <Title style={{marginTop: '80px'}}>Read permissions</Title>
           <Field label="Entity address:">
-            <TextInput value={this.state.newAddress} onChange={e => this.setState({ newAddress: e.target.value })} />
-            <AddButton onClick={() => mainStore.addReadPermission(this.props.file.id, this.state.newAddress)}>Add</AddButton>
-            <RemoveButton onClick={() => mainStore.removeReadPermission(this.props.file.id, this.state.newAddress)}>Remove</RemoveButton>
+            <TextInput value={this.state.newAddressRead} onChange={e => this.setState({ newAddressRead: e.target.value })} />
+            <AddButton onClick={() => mainStore.addReadPermission(this.props.file.id, this.state.newAddressRead)}>Add</AddButton>
+            <RemoveButton onClick={() => mainStore.removeReadPermission(this.props.file.id, this.state.newAddressRead)}>Remove</RemoveButton>
           </Field>
           <AddressList>
             {

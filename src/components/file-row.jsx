@@ -17,6 +17,10 @@ const Container = styled(TableRow)`
   }
 `
 
+const Name = styled.div`
+  min-width: 440px;
+`
+
 const OwnerCell = styled(TableCell)`
   max-width: 200px;
   width: 200px;
@@ -38,7 +42,9 @@ const DownloadIco = styled.i`
 export const FileRow = ({ file, onClick, selected }) => 
   <Container {...{ onClick, selected }}>
     <TableCell>
-      <div><i className={`fa ${getClassNameForFilename(file.name)}`} /> {file.name}</div>
+      <Name>
+        <i className={`fa ${getClassNameForFilename(file.name)}`} /> {file.name}
+      </Name>
     </TableCell>
     <OwnerCell>
       <EthAddress title={file.owner}>{file.owner}</EthAddress> 

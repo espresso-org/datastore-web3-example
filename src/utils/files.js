@@ -74,6 +74,6 @@ export function getDescriptionForFilename(filename) {
 }
 
 export function loadFileIcons() {
-    for (let icon of fileDesc.icons)
+    for (let icon of fileDesc.fontAwesomeIcons)
         fontawesome.library.add(solid[icon])
 }
