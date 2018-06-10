@@ -81,11 +81,14 @@ class MainStore {
       rpcProvider: new providers.rpc.Web3(results.web3)
     })
 
+    // Very basic, refresh files each time a new event is received
+    this._datastore.events(event => this._refreshFiles())
+
     this._refreshFiles()
   }
 
   async _refreshFiles() {
-    this.files = await this._datastore.listFiles()
+    this.files = await this._datastore.listFiles() 
     
     // Update selected file
     if (this.selectedFile) 
