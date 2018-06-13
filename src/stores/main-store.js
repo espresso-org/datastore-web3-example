@@ -79,10 +79,11 @@ class MainStore {
       storageProvider: new providers.storage.Ipfs(),
       encryptionProvider: new providers.encryption.Aes(),
       rpcProvider: new providers.rpc.Web3(results.web3)
-    })
+    });
 
     // Very basic, refresh files each time a new event is received
-    this._datastore.events(event => this._refreshFiles())
+    (await this._datastore.events())
+      .subscribe(event => this._refreshFiles())
 
     this._refreshFiles()
   }
