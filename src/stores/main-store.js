@@ -1,8 +1,9 @@
 import { observable, computed, action } from 'mobx'
+import { asyncComputed } from 'computed-async-mobx'
 
 import { downloadFile, convertFileToArrayBuffer } from '../utils/files'
 import getWeb3 from '../utils/getWeb3'
-import { Datastore, providers } from 'datastore'
+import { Datastore, providers } from 'aragon-datastore'
 
 export const EditMode = {
   None: "None",
@@ -15,7 +16,15 @@ class MainStore {
 
   @observable files = []
   @observable selectedFile
-  @observable editMode = EditMode.None
+  @observable editMode = EditMode.None  
+  
+  
+  selectedFilePermissions = asyncComputed([], 100, async () => 
+    this.selectedFile ?
+      this._datastore.getFilePermissions(this.selectedFile.id)
+      :
+      []
+  )
 
   isFileSelected(file) {
     return this.selectedFile && this.selectedFile.id === file.id

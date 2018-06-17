@@ -33,9 +33,13 @@ export class EditPermissions extends Component {
             <RemoveButton onClick={() => mainStore.removeWritePermission(this.props.file.id, this.state.newAddressWrite)}>Remove</RemoveButton>
           </Field>
           <AddressList>
-            {this.props.file.permissionAddresses.map(address => 
-              <Address key={address}>{address}</Address>
-            )}
+            {
+              mainStore.selectedFilePermissions.get()
+              .filter(permission => permission.write === true)
+              .map(permission => 
+                <Address key={permission.entity}>{permission.entity}</Address>
+              )
+            }
           </AddressList>
          
 
@@ -46,8 +50,12 @@ export class EditPermissions extends Component {
             <RemoveButton onClick={() => mainStore.removeReadPermission(this.props.file.id, this.state.newAddressRead)}>Remove</RemoveButton>
           </Field>
           <AddressList>
-            {
-              // TODO
+          {
+              mainStore.selectedFilePermissions.get()
+              .filter(permission => permission.read === true)
+              .map(permission => 
+                <Address key={permission.entity}>{permission.entity}</Address>
+              )
             }
           </AddressList>
 
